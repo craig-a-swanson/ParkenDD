@@ -25,13 +25,13 @@ struct Colors {
         let lotDensityColor: UIColor = {
             switch percentage {
             case 0.6...1:
-                return UIColor(rgba: "#006a39")
+                return UIColor.highAvailabilityColor
             case 0.16..<0.6:
-                return UIColor(rgba: "#1daa8c")
+                return UIColor.mediumAvailabilityColor
             case 0.01..<0.16:
-                return UIColor(rgba: "#7f0304")
+                return UIColor.lowAvailabilityColor
             default:
-                return UIColor(rgba: "#5c5c5c")
+                return UIColor.noAvailabilityColor
             }
         }()
 
@@ -105,7 +105,15 @@ extension UIColor {
 		self.init(red:red, green:green, blue:blue, alpha:alpha)
 	}
 
-    public var rgbaComponents: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+    // MARK: - Properties on UIColor
+    static var highAvailabilityColor = UIColor(rgba: "#006a39")
+    static var mediumAvailabilityColor = UIColor(rgba: "#1daa8c")
+    static var lowAvailabilityColor = UIColor(rgba: "#7f0304")
+    static var noAvailabilityColor = UIColor(rgba: "#5c5c5c")
+
+    /// Source: https://theswiftdev.com/uicolor-best-practices-in-swift/
+    /// Get the RGB components of a UIColor
+    var rgbaComponents: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
@@ -113,7 +121,9 @@ extension UIColor {
         self.getRed(&r, green: &g, blue: &b, alpha: &a)
         return (r, g, b, a)
     }
-    public var hsbaComponents: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat) {
+    /// Source: https://theswiftdev.com/uicolor-best-practices-in-swift/
+    /// Get the HSB components of a UIColor
+    var hsbaComponents: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat) {
         var h: CGFloat = 0
         var s: CGFloat = 0
         var b: CGFloat = 0
