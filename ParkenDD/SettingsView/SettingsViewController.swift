@@ -26,6 +26,8 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 
 		let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SettingsViewController.dismiss as (SettingsViewController) -> () -> ()))
 		self.navigationItem.rightBarButtonItem = doneButton
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.settings.string, style: .plain, target: nil, action: nil)
 
 		self.navigationItem.title = L10n.settings.string
 		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)
