@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "tendency"; ObjectID = "63L-uQ-iqV"; */
+"63L-uQ-iqV.text" = "tendency";
+
+/* Class = "UILabel"; text = "159"; ObjectID = "WBR-31-iII"; */
+"WBR-31-iII.text" = "159";
+
+/* Class = "UILabel"; text = "address"; ObjectID = "aUh-dH-utI"; */
+"aUh-dH-utI.text" = "address";
+
+/* Class = "UILabel"; text = "Frauenkirche Neumarkt"; ObjectID = "gAX-Mc-DZC"; */
+"gAX-Mc-DZC.text" = "Frauenkirche Neumarkt";
+
+/* Class = "UIButton"; normalTitle = "ParkenDD"; ObjectID = "nIf-ms-NoY"; */
+"nIf-ms-NoY.normalTitle" = "ParkenDD";
+
+/* Class = "UITableViewController"; title = "ParkenDD"; ObjectID = "t3H-oi-vUE"; */
+"t3H-oi-vUE.title" = "ParkenDD";
