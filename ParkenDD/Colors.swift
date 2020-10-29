@@ -25,28 +25,29 @@ struct Colors {
         let lotDensityColor: UIColor = {
             switch percentage {
             case 0.6...1:
-                return UIColor.highAvailabilityColor
+                return .highAvailabilityColor
             case 0.16..<0.6:
-                return UIColor.mediumAvailabilityColor
+                return .mediumAvailabilityColor
             case 0.01..<0.16:
-                return UIColor.lowAvailabilityColor
+                return .lowAvailabilityColor
             default:
-                return UIColor.noAvailabilityColor
+                return .noAvailabilityColor
             }
         }()
 
-		let useGrayscale = UserDefaults.standard.bool(forKey: Defaults.grayscaleUI)
-		if useGrayscale {
-			if emptyLots <= 0 {
-				return UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
-			}
+        let useGrayscale = UserDefaults.standard.bool(forKey: Defaults.grayscaleUI)
+        if useGrayscale {
+            if emptyLots <= 0 {
+                return UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
+            }
             return lotDensityColor
 		}
 
 		if emptyLots <= 0 {
+            // If there are no empty lots, the same hue is returned but at a slightly reduced brightness value.
             return UIColor(hue: lotDensityColor.hsbaComponents.hue,
                            saturation: lotDensityColor.hsbaComponents.saturation,
-                           brightness: lotDensityColor.hsbaComponents.saturation - 0.1,
+                           brightness: lotDensityColor.hsbaComponents.brightness - 0.1,
                            alpha: lotDensityColor.hsbaComponents.alpha)
 		}
 		return lotDensityColor
@@ -105,22 +106,11 @@ extension UIColor {
 		self.init(red:red, green:green, blue:blue, alpha:alpha)
 	}
 
-    // MARK: - Properties on UIColor
     static var highAvailabilityColor = UIColor(rgba: "#006a39")
     static var mediumAvailabilityColor = UIColor(rgba: "#1daa8c")
     static var lowAvailabilityColor = UIColor(rgba: "#7f0304")
     static var noAvailabilityColor = UIColor(rgba: "#5c5c5c")
 
-    /// Source: https://theswiftdev.com/uicolor-best-practices-in-swift/
-    /// Get the RGB components of a UIColor
-    var rgbaComponents: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-        self.getRed(&r, green: &g, blue: &b, alpha: &a)
-        return (r, g, b, a)
-    }
     /// Source: https://theswiftdev.com/uicolor-best-practices-in-swift/
     /// Get the HSB components of a UIColor
     var hsbaComponents: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat) {
