@@ -178,6 +178,8 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 	@IBAction func titleButtonTapped(_ sender: UIButton) {
 		let settingsStoryBoard = UIStoryboard(name: "Settings", bundle: Bundle.main)
 		let citySelectionVC = settingsStoryBoard.instantiateViewController(withIdentifier: "City SelectionTVC")
+        citySelectionVC.modalPresentationStyle = .popover
+//        self.present(citySelectionVC, animated: true, completion: nil)
 		show(citySelectionVC, sender: self)
 	}
 	
