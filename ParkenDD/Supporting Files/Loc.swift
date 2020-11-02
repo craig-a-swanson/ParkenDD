@@ -23,6 +23,7 @@ enum L10n {
   case closed
   /// Display
   case displayOptions
+  case done
   /// Unfortunately there's no data available for the selected date.
   case endOfData
   /// No data
@@ -143,6 +144,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr(key: "CLOSED")
       case .displayOptions:
         return L10n.tr(key: "DISPLAY_OPTIONS")
+      case .done:
+        return L10n.tr(key: "DONE")
       case .endOfData:
         return L10n.tr(key: "END_OF_DATA")
       case .endOfDataTitle:

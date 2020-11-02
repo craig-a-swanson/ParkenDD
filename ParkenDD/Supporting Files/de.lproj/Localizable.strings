@@ -27,6 +27,7 @@
 "LOCATION_DATA_ERROR" = "ParkenDD hat keine Berechtigung sich zu lokalisieren. Bitte erlaube das in den Einstellungen.";
 "CANCEL" = "Abbrechen";
 "SETTINGS" = "Einstellungen";
+"DONE" = "Zurück";
 "CIRCA_SPOTS_AVAILABLE" = "ca. %@ freie Plätze";
 "DISPLAY_OPTIONS" = "Darstellung";
 "HIDE_NODATA_LOTS" = "Parkplätze ohne Daten ausblenden";

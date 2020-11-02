@@ -37,6 +37,8 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 		let navBar = self.navigationController?.navigationBar
 		navBar!.isTranslucent = false
 		navBar!.tintColor = UIColor.black
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.done.string, style: .plain, target: nil, action: nil)
 
 		// Set title to selected city
 		updateTitle(withCity: nil)
