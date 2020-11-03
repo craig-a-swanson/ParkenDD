@@ -38,6 +38,7 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 		navBar!.isTranslucent = false
 		navBar!.tintColor = UIColor.black
         
+        // set back button text when navigating to next screen.
         navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.back.string, style: .plain, target: nil, action: nil)
 
 		// Set title to selected city

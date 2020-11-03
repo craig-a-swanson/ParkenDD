@@ -23,6 +23,7 @@ enum L10n {
   case closed
   /// Display
   case displayOptions
+  /// Back
   case back
   /// Unfortunately there's no data available for the selected date.
   case endOfData
