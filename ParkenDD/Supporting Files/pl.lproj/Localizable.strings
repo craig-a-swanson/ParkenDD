@@ -1,4 +1,4 @@
-﻿"REQUEST_ERROR_TITLE" = "Błąd połączenia";
+"REQUEST_ERROR_TITLE" = "Błąd połączenia";
 "REQUEST_ERROR" = "Nie można załadować danych. Prawdopodobnie nie ma połączenia internetowego.";
 "SERVER_ERROR_TITLE" = "Błąd serweru";
 "SERVER_ERROR" = "Nie można odczytać danych. Prosze zaktualizuj za chwilę ponownie.";
@@ -28,6 +28,7 @@
 "LOCATION_DATA_ERROR" = "ParkenDD nie ma zezwolenia do lokalizacji. \nProsze dostępnij to w ustawieniach.";
 "CANCEL" = "Anuluj";
 "SETTINGS" = "Ustawienia";
+"BACK" = "Wstecz";
 "CIRCA_SPOTS_AVAILABLE" = "ca. %@ miejsca wolne";
 "DISPLAY_OPTIONS" = "Opcje wyświetlania";
 "HIDE_NODATA_LOTS" = "Ukryć parkingi bez danych";

@@ -16,9 +16,6 @@ class CitySelectionTVC: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-        self.navigationController?.navigationBar.isHidden = false
-        self.title = "Hey"
-
         park.fetchCities { [weak self] result in
             guard let response = try? result.get() else {
                 print(result)

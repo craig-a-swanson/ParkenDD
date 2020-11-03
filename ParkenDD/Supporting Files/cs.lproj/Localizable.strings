@@ -27,6 +27,7 @@
 "LOCATION_DATA_ERROR" = "ParkenDD se nepovedlo získat aktuální pozici. Prosím, povolte tuto funkci v systémových nastaveních.";
 "CANCEL" = "Storno";
 "SETTINGS" = "Nastavení";
+"BACK" = "Dozadu";
 "CIRCA_SPOTS_AVAILABLE" = "Zhruba %@ míst volných";
 "DISPLAY_OPTIONS" = "Zobrazení";
 "HIDE_NODATA_LOTS" = "Skrýt parkoviště bez dostupných dat";

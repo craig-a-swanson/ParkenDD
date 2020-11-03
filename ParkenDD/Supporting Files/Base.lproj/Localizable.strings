@@ -27,7 +27,7 @@
 "LOCATION_DATA_ERROR" = "ParkenDD is unable to get location data. Please allow it to do so in the system settings.";
 "CANCEL" = "Cancel";
 "SETTINGS" = "Settings";
-"DONE" = "Done";
+"BACK" = "Back";
 "CIRCA_SPOTS_AVAILABLE" = "ca. %@ spots available";
 "DISPLAY_OPTIONS" = "Display";
 "HIDE_NODATA_LOTS" = "Hide Lots Without Data";
