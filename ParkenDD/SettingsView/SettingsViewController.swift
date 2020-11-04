@@ -20,37 +20,37 @@ enum Sections: Int {
 }
 
 class SettingsViewController: UITableViewController, MFMailComposeViewControllerDelegate {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
 		let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SettingsViewController.dismiss as (SettingsViewController) -> () -> ()))
 		self.navigationItem.rightBarButtonItem = doneButton
-        
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.settings.string, style: .plain, target: nil, action: nil)
-
+		
+		navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.settings.string, style: .plain, target: nil, action: nil)
+		
 		self.navigationItem.title = L10n.settings.string
 		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)
 		var attrsDict = [NSAttributedStringKey: Any]()
 		attrsDict[NSAttributedStringKey.font] = font
 		self.navigationController?.navigationBar.titleTextAttributes = attrsDict
-    }
-
+	}
+	
 	@objc func dismiss() {
 		self.dismiss(animated: true, completion: nil)
 	}
-
+	
 	override func viewWillAppear(_ animated: Bool) {
 		tableView.reloadData()
 	}
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	
+	// MARK: - Table view data source
+	
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		return 4
+	}
+	
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		let sec = Sections(rawValue: section)!
 		switch sec {
 		case .cityOptions:
@@ -62,8 +62,8 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		case .otherOptions:
 			return 4
 		}
-    }
-
+	}
+	
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		let sec = Sections(rawValue: section)!
 		switch sec {
@@ -77,23 +77,23 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 			return L10n.otherOptions.string
 		}
 	}
-
+	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let sec = Sections(rawValue: indexPath.section)!
 		let cell: UITableViewCell = UITableViewCell()
-
+		
 		let selectedCity = UserDefaults.standard.string(forKey: Defaults.selectedCityName)
 		let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType)
 		let doHideLots = UserDefaults.standard.bool(forKey: Defaults.skipNodataLots)
 		let useGrayscale = UserDefaults.standard.bool(forKey: Defaults.grayscaleUI)
-        let showExperimentalCities = UserDefaults.standard.bool(forKey: Defaults.showExperimentalCities)
-
+		let showExperimentalCities = UserDefaults.standard.bool(forKey: Defaults.showExperimentalCities)
+		
 		switch (sec, indexPath.row) {
 		// CITY OPTIONS
 		case (.cityOptions, 0):
 			cell.textLabel!.text = selectedCity
 			cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-
+			
 		// SORTING OPTIONS
 		case (.sortingOptions, 0):
 			cell.textLabel?.text = L10n.sortingtypeDefault.string
@@ -110,7 +110,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		case (.sortingOptions, 4):
 			cell.textLabel!.text = L10n.sortingtypeEuklid.string
 			cell.accessoryType = sortingType == Sorting.euclid ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
-
+			
 		// DISPLAY OPTIONS
 		case (.displayOptions, 0):
 			cell.textLabel?.text = L10n.hideNodataLots.string
@@ -118,10 +118,10 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		case (.displayOptions, 1):
 			cell.textLabel?.text = L10n.useGrayscaleColors.string
 			cell.accessoryType = useGrayscale ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
-        case (.displayOptions, 2):
-            cell.textLabel?.text = L10n.showexperimentalcitiessetting.string
-            cell.accessoryType = showExperimentalCities ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
-
+		case (.displayOptions, 2):
+			cell.textLabel?.text = L10n.showexperimentalcitiessetting.string
+			cell.accessoryType = showExperimentalCities ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
+			
 		// OTHER OPTIONS
 		case (.otherOptions, 0):
 			cell.textLabel?.text = L10n.aboutButton.string
@@ -135,29 +135,29 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		case (.otherOptions, 3):
 			cell.textLabel?.text = L10n.requestNewCity.string
 			cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-
+			
 		default:
 			break
 		}
-
+		
 		cell.textLabel?.font = UIFont(name: "AvenirNext-Regular", size: 16.0)
 		return cell
-
+		
 	}
-
+	
 	// MARK: - Table View Delegate
-
+	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let sec = Sections(rawValue: indexPath.section)!
-
+		
 		switch sec {
 		// CITY OPTIONS
 		case .cityOptions:
 			performSegue(withIdentifier: "showCitySelection", sender: self)
-
+			
 		// SORTING OPTIONS
 		case .sortingOptions:
-
+			
 			// Don't let the user select a location based sorting option if the required authorization is missing
 			if indexPath.row == 1 || indexPath.row == 4 {
 				if Location.authState != .authorizedWhenInUse {
@@ -168,17 +168,17 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 						UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 					}))
 					present(alertController, animated: true, completion: nil)
-
+					
 					tableView.deselectRow(at: indexPath, animated: true)
 					return
 				}
 			}
-
+			
 			for row in 0...4 {
 				tableView.cellForRow(at: IndexPath(row: row, section: Sections.sortingOptions.rawValue))?.accessoryType = UITableViewCellAccessoryType.none
 			}
 			tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
-
+			
 			var defaultsValue: String
 			switch indexPath.row {
 			case 1:
@@ -193,7 +193,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 				defaultsValue = Sorting.standard
 			}
 			UserDefaults.standard.setValue(defaultsValue, forKey: Defaults.sortingType)
-
+			
 		// DISPLAY OPTIONS
 		case .displayOptions:
 			switch indexPath.row {
@@ -216,34 +216,34 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 					UserDefaults.standard.set(true, forKey: Defaults.grayscaleUI)
 					tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
 				}
-            case 2:
-                let showExperimentalCities = UserDefaults.standard.bool(forKey: Defaults.showExperimentalCities)
-                if showExperimentalCities {
-                    UserDefaults.standard.set(false, forKey: Defaults.showExperimentalCities)
-                    tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-                    refreshLotlist()
-                } else {
-                    let alert = UIAlertController(title: L10n.noteTitle.string, message: L10n.showexperimentalcitiesalert.string, preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: L10n.cancel.string, style: UIAlertActionStyle.cancel, handler: { (action) -> Void in
-
-                    }))
-                    alert.addAction(UIAlertAction(title: L10n.activate.string, style: UIAlertActionStyle.default, handler: { (action) -> Void in
-                        UserDefaults.standard.set(true, forKey: Defaults.showExperimentalCities)
-                        tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
-                        refreshLotlist()
-                    }))
-                    present(alert, animated: true, completion: nil)
-                }
+			case 2:
+				let showExperimentalCities = UserDefaults.standard.bool(forKey: Defaults.showExperimentalCities)
+				if showExperimentalCities {
+					UserDefaults.standard.set(false, forKey: Defaults.showExperimentalCities)
+					tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
+					refreshLotlist()
+				} else {
+					let alert = UIAlertController(title: L10n.noteTitle.string, message: L10n.showexperimentalcitiesalert.string, preferredStyle: UIAlertControllerStyle.alert)
+					alert.addAction(UIAlertAction(title: L10n.cancel.string, style: UIAlertActionStyle.cancel, handler: { (action) -> Void in
+						
+					}))
+					alert.addAction(UIAlertAction(title: L10n.activate.string, style: UIAlertActionStyle.default, handler: { (action) -> Void in
+						UserDefaults.standard.set(true, forKey: Defaults.showExperimentalCities)
+						tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
+						refreshLotlist()
+					}))
+					present(alert, animated: true, completion: nil)
+				}
 			default:
 				break
 			}
-
+			
 		// OTHER OPTIONS
 		case .otherOptions:
 			switch indexPath.row {
 			case 0:
 				if #available(iOS 9.0, *) {
-				    let safariVC = SFSafariViewController(url: URL(string: "http://parkendd.kilian.io/about.html")!, entersReaderIfAvailable: true)
+					let safariVC = SFSafariViewController(url: URL(string: "http://parkendd.kilian.io/about.html")!, entersReaderIfAvailable: true)
 					present(safariVC, animated: true, completion: nil)
 				} else {
 					UIApplication.shared.openURL(URL(string: "http://parkendd.kilian.io/about.html")!)
@@ -258,12 +258,12 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 				if MFMailComposeViewController.canSendMail() {
 					let mail = MFMailComposeViewController()
 					mail.mailComposeDelegate = self
-
+					
 					let versionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
-                    let buildNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+					let buildNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
 					mail.setSubject("[ParkenDD v\(versionNumber!) (\(buildNumber!))] Feedback")
 					mail.setToRecipients(["parkendd@kilian.io"])
-
+					
 					self.present(mail, animated: true, completion: nil)
 				}
 			case 3:
@@ -277,20 +277,20 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 				break
 			}
 		}
-
+		
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
-
+	
 	// MARK: - MFMailComposeViewControllerDelegate
-
+	
 	func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
 		self.dismiss(animated: true, completion: nil)
 	}
-
+	
 }
 
 func refreshLotlist() -> Void {
-    if let lotlistVC = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0] as? LotlistViewController {
-        lotlistVC.updateData()
-    }
+	if let lotlistVC = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0] as? LotlistViewController {
+		lotlistVC.updateData()
+	}
 }
