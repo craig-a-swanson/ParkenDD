@@ -22,33 +22,33 @@ struct Colors {
 	*/
 	static func colorBasedOnPercentage(_ percentage: Double, emptyLots: Int) -> UIColor {
 
-        let lotDensityColor: UIColor = {
-            switch percentage {
-            case 0.6...1:
-                return .highAvailabilityColor
-            case 0.16..<0.6:
-                return .mediumAvailabilityColor
-            case 0.01..<0.16:
-                return .lowAvailabilityColor
-            default:
-                return .noAvailabilityColor
-            }
-        }()
+		let lotDensityColor: UIColor = {
+			switch percentage {
+			case 0.6...1:
+				return .highAvailabilityColor
+			case 0.16..<0.6:
+				return .mediumAvailabilityColor
+			case 0.01..<0.16:
+				return .lowAvailabilityColor
+			default:
+				return .noAvailabilityColor
+			}
+		}()
 
-        let useGrayscale = UserDefaults.standard.bool(forKey: Defaults.grayscaleUI)
-        if useGrayscale {
-            if emptyLots <= 0 {
-                return UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
-            }
-            return lotDensityColor
+		let useGrayscale = UserDefaults.standard.bool(forKey: Defaults.grayscaleUI)
+		if useGrayscale {
+			if emptyLots <= 0 {
+				return UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
+			}
+			return lotDensityColor
 		}
 
 		if emptyLots <= 0 {
-            // If there are no empty lots, the same hue is returned but at a slightly reduced brightness value.
-            return UIColor(hue: lotDensityColor.hsbaComponents.hue,
-                           saturation: lotDensityColor.hsbaComponents.saturation,
-                           brightness: lotDensityColor.hsbaComponents.brightness - 0.1,
-                           alpha: lotDensityColor.hsbaComponents.alpha)
+			// If there are no empty lots, the same hue is returned but at a slightly reduced brightness value.
+			return UIColor(hue: lotDensityColor.hsbaComponents.hue,
+						   saturation: lotDensityColor.hsbaComponents.saturation,
+						   brightness: lotDensityColor.hsbaComponents.brightness - 0.1,
+						   alpha: lotDensityColor.hsbaComponents.alpha)
 		}
 		return lotDensityColor
 	}
@@ -106,19 +106,19 @@ extension UIColor {
 		self.init(red:red, green:green, blue:blue, alpha:alpha)
 	}
 
-    static var highAvailabilityColor = UIColor(rgba: "#006a39")
-    static var mediumAvailabilityColor = UIColor(rgba: "#1daa8c")
-    static var lowAvailabilityColor = UIColor(rgba: "#7f0304")
-    static var noAvailabilityColor = UIColor(rgba: "#5c5c5c")
+	static var highAvailabilityColor = UIColor(rgba: "#006a39")
+	static var mediumAvailabilityColor = UIColor(rgba: "#1daa8c")
+	static var lowAvailabilityColor = UIColor(rgba: "#7f0304")
+	static var noAvailabilityColor = UIColor(rgba: "#5c5c5c")
 
-    /// Source: https://theswiftdev.com/uicolor-best-practices-in-swift/
-    /// Get the HSB components of a UIColor
-    var hsbaComponents: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat) {
-        var h: CGFloat = 0
-        var s: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-        self.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-        return (h, s, b, a)
-    }
+	/// Source: https://theswiftdev.com/uicolor-best-practices-in-swift/
+	/// Get the HSB components of a UIColor
+	var hsbaComponents: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat) {
+		var h: CGFloat = 0
+		var s: CGFloat = 0
+		var b: CGFloat = 0
+		var a: CGFloat = 0
+		self.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
+		return (h, s, b, a)
+	}
 }
