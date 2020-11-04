@@ -16,6 +16,11 @@ class CitySelectionTVC: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		// pretty navbar with black buttons
+		let navBar = self.navigationController?.navigationBar
+		navBar!.isTranslucent = false
+		navBar!.tintColor = UIColor.black
+		
 		park.fetchCities { [weak self] result in
 			guard let response = try? result.get() else {
 				print(result)
